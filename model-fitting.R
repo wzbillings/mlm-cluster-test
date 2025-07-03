@@ -6,7 +6,6 @@
 
 library(lme4)
 library(brms)
-library(qs2)
 
 options(brms.backend = "cmdstanr")
 out_dir <- here::here("output")
@@ -26,6 +25,9 @@ complete_pooling <- brms::brm(
   cores = 4
 )
 
+# These days I would actually probably write the "no pooling" model as
+# Reaction ~ 0 + Subject + Days * Subject
+# but I think those are pretty much the same
 no_pooling <- brms::brm(
   Reaction ~ 0 + (1 || Subject) + (0 + Days || Subject),
   data = sleepstudy,
@@ -56,17 +58,17 @@ partial_pooling <- brms::brm(
   cores = 4
 )
 
-qs2::qs_save(
+readr::write_rds(
   complete_pooling,
-  here::here(out_dir, "mod-complete-pooling.qs2")
+  here::here(out_dir, "mod-complete-pooling.Rds")
 )
 
-qs2::qs_save(
+readr::write_rds(
   no_pooling,
-  here::here(out_dir, "mod-no-pooling.qs2")
+  here::here(out_dir, "mod-no-pooling.Rds")
 )
 
-qs2::qs_save(
+readr::write_rds(
   partial_pooling,
-  here::here(out_dir, "mod-partial-pooling.qs2")
+  here::here(out_dir, "mod-partial-pooling.Rds")
 )
