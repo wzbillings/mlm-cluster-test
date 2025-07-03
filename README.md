@@ -19,3 +19,5 @@ To run a project on the cluster:
 10. You can monitor the status of your jobs with `sq --me` or if you use targets (or probably other frameworks) you can set it up to print the logs for you.
 
 Once your job is done you can use globus connect to transfer the files back to your computer. ZB was able to get ~100 MBPS transferring to a computer on campus but only ~4 MPBS transferring to home computer, so it was literally faster to transfer to the office machine (which has to be powered on and awake), drive to campus, and copy to a removable drive for big transfers.
+
+See also: [targets template for sapelo2](https://github.com/wzbillings/targets-uga-gacrc) although I don't remember if I actually finished editing this or not. But it has some important changes from the template I copied.
